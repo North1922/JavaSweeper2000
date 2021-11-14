@@ -1,9 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.Locale;
+
 
 import sweeper.Box;
 import sweeper.Coord;
+import sweeper.Ranges;
 
 
 public class JavaSweeper extends JFrame {
@@ -21,6 +22,7 @@ public class JavaSweeper extends JFrame {
 
     private JavaSweeper()
     {
+        Ranges.setSize (new Coord (COLS, ROWS));
         setImages();
         initPanel();
         initFrame();//вызывает инициальзацию фрейма
@@ -43,7 +45,7 @@ public class JavaSweeper extends JFrame {
 
         };
 
-         panel.setPreferredSize(new Dimension(COLS * IMAGE_SIZE , ROWS * IMAGE_SIZE));//задаём размеры окна.
+         panel.setPreferredSize(new Dimension(Ranges.getSize().x * IMAGE_SIZE , Ranges.getSize().y * IMAGE_SIZE));//задаём размеры окна.
         /*
         ширина = кол-во столбцов * размер картинки
         высота = кол-во строк * размер картинки
