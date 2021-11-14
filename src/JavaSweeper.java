@@ -10,8 +10,8 @@ import sweeper.Ranges;
 public class JavaSweeper extends JFrame {
 
     private JPanel panel;
-    private final int COLS = 15;//создаём константу которая указывает колличетсво столбцов
-    private final int ROWS = 1;//создаём константу которая указывает колличество строчек
+    private final int COLS = 9;//создаём константу которая указывает колличетсво столбцов
+    private final int ROWS = 9;//создаём константу которая указывает колличество строчек
     private final int IMAGE_SIZE = 50;//создаём константу которая оозначает размер одной картинки 50х50
 
 
@@ -36,10 +36,9 @@ public class JavaSweeper extends JFrame {
             protected void paintComponent(Graphics g)
             {
                 super.paintComponent(g); //вызываем метод который позволяет выводить нашу картинку. Указывает имя картинки , далее координату и затем указание на ресурс на текущий экземпляр
-                     for (Box box : Box.values()) // перебираем элементы из enum Box
+                     for (Coord coord : Ranges.getAllCoords()) // перебираем элементы из enum Box
                      {
-                         Coord coord = new Coord(box.ordinal() * IMAGE_SIZE, 0);
-                         g.drawImage((Image) box.image, coord.x, coord.y, this); //что бы отобразить картинку берём её из объекта box
+                         g.drawImage((Image) Box.values()[(coord.x + coord.y) % Box.values().length ].image, coord.x * IMAGE_SIZE, coord.y * IMAGE_SIZE, this); //что бы отобразить картинку берём её из объекта box
                      }
             }
 
