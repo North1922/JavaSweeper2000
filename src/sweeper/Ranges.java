@@ -1,12 +1,14 @@
 package sweeper;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Ranges     // класс для хранения поля и некоторых полезных функций
 {
 
     private static Coord size; //координата размера нашего экрана
     private static ArrayList<Coord> allCoords;
+    private static Random random = new Random();
 
 
 
@@ -34,6 +36,11 @@ public class Ranges     // класс для хранения поля и нек
     static boolean inRange (Coord coord)
     {
         return coord.x >= 0 && coord.x < size.x && coord.y >= 0 && coord.y < size.y;
+    }
+
+    static Coord getRandomCoord ()
+    {
+        return new Coord (random.nextInt(size.x), random.nextInt(size.y));
     }
 
 

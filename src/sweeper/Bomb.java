@@ -10,10 +10,11 @@ class Bomb
         this.totalBombs = totalBombs;
     }
 
-    void Start ()
+    void start ()
     {
         bombMap = new Matrix (Box.ZERO);
-        placeBomb ();
+        for (int j = 0; j < totalBombs; j++)
+            placeBomb ();
     }
 
     Box get (Coord coord)
@@ -23,7 +24,8 @@ class Bomb
 
     private void placeBomb ()
     {
-        bombMap.Set(new Coord(4, 4), Box.BOMB);
+        Coord coord = Ranges.getRandomCoord();
+        bombMap.Set(coord, Box.BOMB);
     }
 
 
