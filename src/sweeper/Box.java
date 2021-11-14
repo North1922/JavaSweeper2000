@@ -21,4 +21,11 @@ public enum Box   //создали класс перечеслений enum
 
 
     public Object image;
+
+
+    Box getNextNumberBox ()
+    {
+        return Box.values()[this.ordinal() + 1];
+    }
+
 }

@@ -18,7 +18,7 @@ class Matrix {
             return null;
     }
 
-    void Set (Coord coord, Box box)
+    void set (Coord coord, Box box)
     {
         if (Ranges.inRange(coord))
             matrix [coord.x] [coord.y] = box;
