@@ -28,4 +28,9 @@ public enum Box   //создали класс перечеслений enum
         return Box.values()[this.ordinal() + 1];
     }
 
+    int getNumber ()
+    {
+        return this.ordinal();
+    }
+
 }

@@ -13,6 +13,7 @@ public class JavaSweeper extends JFrame {
 
     private Game game;
     private JPanel panel;
+    private JLabel label;
     private final int COLS = 9;//создаём константу которая указывает колличетсво столбцов
     private final int ROWS = 9;//создаём константу которая указывает колличество строчек
     private final int BOMBS = 10;
@@ -29,9 +30,17 @@ public class JavaSweeper extends JFrame {
         game = new Game(COLS, ROWS, BOMBS);
         game.start();
         setImages();
+        initLabel();
         initPanel();
         initFrame();//вызывает инициальзацию фрейма
     }
+
+    private void initLabel ()
+    {
+        label = new JLabel("Welcome!");
+        add (label, BorderLayout.SOUTH);
+    }
+
 
     private void initPanel()
     {
@@ -64,6 +73,7 @@ public class JavaSweeper extends JFrame {
                     game.pressRightButton(coord);
                 if(e.getButton() == MouseEvent.BUTTON2)
                     game.start();
+                label.setText(getMessage());
                 panel.repaint();//после действия мышкой , важно перерисовать форму , иначе действия не будут видны
             }
         });
@@ -74,6 +84,17 @@ public class JavaSweeper extends JFrame {
         высота = кол-во строк * размер картинки
          */
         add (panel);
+    }
+
+    private String getMessage()
+    {
+        switch (game.getState())
+        {
+            case PLAYED: return "THINK TWICE!";
+            case BOMBED: return "YOU LOOSE! BIG BA-DA-BOOM!";
+            case WINNER: return  "CONGRATULATIONS!";
+            default    : return "WELCOME";
+        }
     }
 
     private void initFrame()
