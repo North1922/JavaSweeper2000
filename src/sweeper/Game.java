@@ -11,7 +11,7 @@ public class Game
 
     public void start ()
     {
-        bombMap = new Matrix(Box.BOMB);
+        bombMap = new Matrix(Box.ZERO);
     }
 
     public Box getBox (Coord coord)

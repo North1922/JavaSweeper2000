@@ -57,13 +57,14 @@ public class JavaSweeper extends JFrame {
 
     private void initFrame()
     {
-        pack();// метод pack() устанавливает такой минимальный размер контейнера , который достаточен для отображения всех компонентов
+
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Java Sweeper");
         setLocationRelativeTo(null);
         setResizable(false);
         setVisible(true);
         setIconImage(getImage("icon"));
+        pack();// метод pack() устанавливает такой минимальный размер контейнера , который достаточен для отображения всех компонентов
     }
 
     private void setImages ()
