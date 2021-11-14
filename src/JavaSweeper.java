@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
-
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import sweeper.Box;
 import sweeper.Coord;
@@ -48,6 +49,25 @@ public class JavaSweeper extends JFrame {
 
         };
 
+
+        panel.addMouseListener(new MouseAdapter() //к нашей панели доавляем адаптер мыши
+        {
+            @Override
+            public void mousePressed(MouseEvent e)
+            {
+                int x = e.getX() / IMAGE_SIZE;
+                int y = e.getY() / IMAGE_SIZE;
+                Coord coord = new Coord (x, y);
+                if(e.getButton() == MouseEvent.BUTTON1)
+                    game.pressLeftButton(coord);
+                if(e.getButton() == MouseEvent.BUTTON3)
+                    game.pressRightButton(coord);
+                if(e.getButton() == MouseEvent.BUTTON2)
+                    game.start();
+                panel.repaint();//после действия мышкой , важно перерисовать форму , иначе действия не будут видны
+            }
+        });
+
          panel.setPreferredSize(new Dimension(Ranges.getSize().x * IMAGE_SIZE , Ranges.getSize().y * IMAGE_SIZE));//задаём размеры окна.
         /*
         ширина = кол-во столбцов * размер картинки
@@ -61,11 +81,11 @@ public class JavaSweeper extends JFrame {
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Java Sweeper");
-        setLocationRelativeTo(null);
         setResizable(false);
         setVisible(true);
-        setIconImage(getImage("icon"));
         pack();// метод pack() устанавливает такой минимальный размер контейнера , который достаточен для отображения всех компонентов
+        setLocationRelativeTo(null);
+        setIconImage(getImage("icon"));
     }
 
     private void setImages ()
