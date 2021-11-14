@@ -10,7 +10,7 @@ public class Ranges     // класс для хранения поля и нек
 
 
 
-    public static void setSize(Coord _size)
+    static void setSize(Coord _size)
     {
         size = _size;
         allCoords = new ArrayList<Coord>();

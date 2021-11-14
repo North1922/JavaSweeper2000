@@ -4,11 +4,13 @@ import java.awt.*;
 
 import sweeper.Box;
 import sweeper.Coord;
+import sweeper.Game;
 import sweeper.Ranges;
 
 
 public class JavaSweeper extends JFrame {
 
+    private Game game;
     private JPanel panel;
     private final int COLS = 9;//создаём константу которая указывает колличетсво столбцов
     private final int ROWS = 9;//создаём константу которая указывает колличество строчек
@@ -22,7 +24,7 @@ public class JavaSweeper extends JFrame {
 
     private JavaSweeper()
     {
-        Ranges.setSize (new Coord (COLS, ROWS));
+        game = new Game(COLS, ROWS);
         setImages();
         initPanel();
         initFrame();//вызывает инициальзацию фрейма
@@ -38,7 +40,7 @@ public class JavaSweeper extends JFrame {
                 super.paintComponent(g); //вызываем метод который позволяет выводить нашу картинку. Указывает имя картинки , далее координату и затем указание на ресурс на текущий экземпляр
                      for (Coord coord : Ranges.getAllCoords()) // перебираем элементы из enum Box
                      {
-                         g.drawImage((Image) Box.values()[(coord.x + coord.y) % Box.values().length ].image, coord.x * IMAGE_SIZE, coord.y * IMAGE_SIZE, this); //что бы отобразить картинку берём её из объекта box
+                         g.drawImage((Image) game.getBox(coord).image, coord.x * IMAGE_SIZE, coord.y * IMAGE_SIZE, this); //что бы отобразить картинку берём её из объекта box
                      }
             }
 
